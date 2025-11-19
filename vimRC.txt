@@ -1,82 +1,34 @@
-" ====================================================
-"      DASTER EMBEDDED VIM CONFIG (ULTRA-LIGHT)
-" ====================================================
+" ---------- Performance-optimized settings ----------
+syntax on
+set number
 
-" ---------- Basic UI ----------
-syntax on                   " Enable syntax highlighting
-set number                  " Show line numbers
-set relativenumber          " Relative numbers for easier navigation
-set showmatch               " Highlight matching bracket
-set cursorline              " Highlight current line
-set title                   " Show filename in terminal title bar
-set laststatus=2            " Always show status line
+" Keep things simple for speed
+set nohlsearch
+set incsearch
+set ignorecase
 
-" ---------- Better Colors ----------
-set background=dark
-set termguicolors           " If terminal supports 24-bit colors
+" Indentation (lightweight)
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set autoindent
 
-" Fallback color scheme for old terminals
-if (has("termguicolors"))
-  colorscheme desert
-endif
+" Disable CPU-heavy features
+" set relativenumber      " disabled for performance
+" set cursorline          " disabled for performance
+" set showmatch           " disabled for performance
+" set wrap                " disabled for performance
+" set linebreak           " disabled for performance
+" set termguicolors       " disabled for performance
+" set title               " disabled for performance
 
-" ---------- Indentation ----------
-set expandtab               " Convert tabs to spaces
-set shiftwidth=4            " Tab width when indenting
-set tabstop=4               " Tab width
-set autoindent              " Auto indentation
-set smartindent             " Smarter indentation for C-like languages
+" Disable regex highlight on trailing spaces
+" match ExtraWhitespace /\s\+$/
 
-" ---------- Search ----------
-set hlsearch                " highlight search results
-set incsearch               " incremental search
-set ignorecase              " ignore case by default
-set smartcase               " but respect uppercase queries
-
-" ---------- Editing Quality ----------
-set wrap                    " Soft wrap text
-set linebreak               " Wrap at word boundary
-set backspace=indent,eol,start
-set scrolloff=3             " Keep cursor centered vertically
-set clipboard=unnamedplus   " Use system clipboard, if supported
-
-" ---------- ESC with 'jk' ----------
+" ESC with jk
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-" ---------- Useful Mappings ----------
-nnoremap <space>w :w<CR>          " Quick save
-nnoremap <space>q :q<CR>          " Quick quit
-nnoremap <space>x :x<CR>          " Save & exit
-nnoremap <space>c :nohlsearch<CR> " Clear search highlight
-
-" Move 5 lines at a time (faster navigation)
-nnoremap <C-j> 5j
-nnoremap <C-k> 5k
-
-" ---------- Filetype Settings ----------
 filetype on
-filetype indent on
 filetype plugin on
-
-" Python specific
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
-
-" C/C++
-autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
-
-" Bash
-autocmd FileType sh setlocal tabstop=4 shiftwidth=4 expandtab
-
-" ---------- Disable swap/backup ----------
-set noswapfile
-set nobackup
-set nowritebackup
-
-" ---------- Highlight trailing spaces ----------
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-" ====================================================
-" END OF DASTER EMBEDDED VIM CONFIG
-" ====================================================
+filetype indent on
